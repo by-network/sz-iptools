@@ -1,0 +1,27 @@
+{
+  "name": "sz-iptools",
+  "version": "0.0.1",
+  "description": "sz-iptools is a set of tools to validate and manage ip data and configurations using Node.js.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test",
+    "start": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gsomenzi/sz-iptools.git"
+  },
+  "keywords": [
+    "ip",
+    "linux",
+    "ipv4",
+    "ipv6",
+    "network"
+  ],
+  "author": "Guilherme Somenzi <guilherme@somenzi.me>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gsomenzi/sz-iptools/issues"
+  },
+  "homepage": "https://github.com/gsomenzi/sz-iptools#readme"
+}
