@@ -24,7 +24,7 @@ Sz-IPtools is a set of tools to validate, calculate and manage IP address config
 
  ### Loading IPCalculator module
  ```javascript
- const SzIPCalculator = require('sz-iptools').ipCalculator
+ const SzIPCalculator = require('sz-iptools').IPCalculator
  ```
 
 ## API
