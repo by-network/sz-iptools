@@ -32,11 +32,10 @@ Sz-IPtools is a set of tools to validate, calculate and manage IP address config
 #### SzIPCalculator.isIPv4(string, callback)
 Evaluate if the string passed is a valid IPv4 address.
 
- *string* (string) IP address to evaluate. Must to be a string, can contain netmask, cidr prefix or not.
- 
- *callback* (function) Function executed as callback. Arguments (err, boolean)
+*string* (string) IP address to evaluate. Must to be a string, can contain netmask, cidr prefix or not.
 
-Examples:
+*callback* (function) Function executed as callback. Arguments (err, boolean).
+
 ```javascript
 SzIpValidation.isIPv4('192.168.1.1', (err, isValidIp) => {
   if (err) return console.error(err)
@@ -58,3 +57,8 @@ SzIpValidation.isIPv4('192.168.1.1/255.255.255.0', (err, res) => {
 ```
 
 #### SzIPCalculator.getIpData(string, callback)
+Gets IPv4 data based on address passed as string. If address contains netmask or cidr prefix, calculates information about network. Otherwise, gets address information.
+
+*string* (string) IP address to evaluate. Must to be a string, can contain netmask, cidr prefix or not.
+
+*callback* (function) Function executed as callback. Arguments (err, object).
