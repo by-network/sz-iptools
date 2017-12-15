@@ -1,4 +1,4 @@
-const SzIpValidation = require('./index.js').ipValidation
+const SzIpValidation = require('./index.js').ipCalculator
 
 console.log('===== ipValidation =====\n')
 

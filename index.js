@@ -1,3 +1,3 @@
 module.exports = {
-  ipValidation: require('./lib/ipValidation/index')
+  ipCalculator: require('./lib/ipCalculator/index')
 }
