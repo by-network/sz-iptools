@@ -50,3 +50,18 @@ SzIpValidation.getIpData('192.168.1.1/24', (err, res) => {
   if (err) return console.error(err)
   return console.log(res)
 })
+SzIpValidation.getIpData('192.168.1.1/19', (err, res) => {
+  console.log('\nDADOS DE 192.168.1.1/19')
+  if (err) return console.error(err)
+  return console.log(res)
+})
+SzIpValidation.getIpData('192.168.1.1/255.255.255.0', (err, res) => {
+  console.log('\nDADOS DE 192.168.1.1/255.255.255.0')
+  if (err) return console.error(err)
+  return console.log(res)
+})
+SzIpValidation.getIpData('192.168.1.1/255.255.224.0', (err, res) => {
+  console.log('\nDADOS DE 192.168.1.1/255.255.224.0')
+  if (err) return console.error(err)
+  return console.log(res)
+})
