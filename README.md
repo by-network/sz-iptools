@@ -35,21 +35,21 @@ SzIPCalculator.isIPv4(string, callback)
 
 Examples:
 ```javascript
-SzIpValidation.isIPv4('192.168.1.1', (err, res) => {
+SzIpValidation.isIPv4('192.168.1.1', (err, isValidIp) => {
   if (err) return console.error(err)
-  if (!res) return console.log('192.168.1.1 NÃO é um endereço IPv4')
-  return console.log('192.168.1.1 é um endereço IPv4')
+  if (!isValidIp) return console.log('192.168.1.1 NOT an valid IPv4 address')
+  return console.log('192.168.1.1 Valid IPv4 address')
 })
 //or
 SzIpValidation.isIPv4('192.168.1.1/24', (err, res) => {
   if (err) return console.error(err)
-  if (!res) return console.log('192.168.1.1/24 NÃO é um endereço IPv4')
-  return console.log('192.168.1.1/24 é um endereço IPv4')
+  if (!isValidIp) return console.log('192.168.1.1/24 NOT an valid IPv4 address')
+  return console.log('192.168.1.1/24 Valid IPv4 address')
 })
 //or
-SzIpValidation.isIPv4('1aaa92.168.1.1/255.255.255.0', (err, res) => {
+SzIpValidation.isIPv4('192.168.1.1/255.255.255.0', (err, res) => {
   if (err) return console.error(err)
-  if (!res) return console.log('1aaa92.168.1.1/255.255.255.0 NÃO é um endereço IPv4')
-  return console.log('1aaa92.168.1.1/255.255.255.0 é um endereço IPv4')
+  if (!isValidIp) return console.log('192.168.1.1/255.255.255.0 NOT an valid IPv4 address')
+  return console.log('192.168.1.1/255.255.255.0 Valid IPv4 address')
 })
 ```
