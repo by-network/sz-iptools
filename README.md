@@ -74,25 +74,53 @@ SzIPCalculator.getIpData('192.168.1.1/255.255.224.0', (err, res) => {
 // it returns
 
 { 
-  havemask: true,
-  string: '192.168.1.1',
-  decimal: 3232235777,
-  binary: '11000000.10101000.00000001.00000001',
-  cidr: 19,
-  netmask: '255.255.224.0',
-  private: true,
-  reserved: false,
-  lower: 
-  { 
+  address: { 
+    string: '192.168.1.1',
+    decimal: 3232235777,
+    binary: '11000000.10101000.00000001.00000001' 
+  },
+  netmask: { 
+    string: '255.255.224.0',
+    cidr: 19 
+  },
+  info: { 
+    haveNetmask: true, 
+    private: true, 
+    reserved: false 
+  },
+  network: {
+    address: '192.168.0.0',
+    broadcast: '192.168.31.255',
+    hostsNumber: 8189 
+  },
+  lower: { 
     string: '192.168.0.0',
     binary: '11000000.10101000.00000000.00000000',
     decimal: 3232235520 
   },
-  higher: 
-  {
+  higher: { 
     string: '192.168.31.255',
     binary: '11000000.10101000.00011111.11111111',
     decimal: 3232243711 
-  }
+  } 
 }
+```
+
+#### SzIPCalculator.onSameNetwork(ip1, ip2, netmask, callback)
+Evaluate if ip1 and ip2 are on the same network, based on netmask.
+
+*ip1* (string) First IP address for evaluation.
+
+*ip2* (string) Second IP address for evaluation.
+
+*netmask* (string) Subnet user for evaluation.
+
+*callback* (function) Function executed as callback. Arguments (err, boolean).
+
+```javascript
+SzIPCalculator.onSameNetwork('192.168.1.1', '192.168.2.50', '255.255.255.0', (err, sameNetwork) => {
+  if (err) return console.error(err)
+  if (!sameNetwork) return console.log('192.168.1.1 and 192.168.2.50 are NOT on the same network.')
+  return console.log('192.168.1.1 and 192.168.2.50 are on the same network.')
+})
 ```
