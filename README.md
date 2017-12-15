@@ -31,8 +31,8 @@ Sz-IPtools is a set of tools to validate, calculate and manage IP address config
 
 SzIPCalculator.isIPv4(string, callback)
 
-*string* (string) IP address to evaluate. Must to be a string, can contain netmask, cidr prefix or not.
-*callback* (function) Function executed as callback. Arguments (err, boolean)
+ *string* (string) IP address to evaluate. Must to be a string, can contain netmask, cidr prefix or not.
+ *callback* (function) Function executed as callback. Arguments (err, boolean)
 
 Examples:
 ```javascript
