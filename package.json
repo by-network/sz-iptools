@@ -19,7 +19,7 @@
     "network"
   ],
   "author": "Guilherme Somenzi <guilherme@somenzi.me>",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/gsomenzi/sz-iptools/issues"
   },
