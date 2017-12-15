@@ -1,5 +1,7 @@
 # Sz-IPtools
 
+!!! AT DEVELOPING STAGE !!!
+
 Sz-IPtools is a set of tools to validate, calculate and manage IP address configuration of a Linux server. It is write to use as a Node.js module. The tools are separate by modules, that can be invoked separately. The modules are:
 
  * <b>IPCalculator</b>: Some methods to help with IP address validation, get address details and calculate with subnet mask.
@@ -62,3 +64,35 @@ Gets IPv4 data based on address passed as string. If address contains netmask or
 *string* (string) IP address to evaluate. Must to be a string, can contain netmask, cidr prefix or not.
 
 *callback* (function) Function executed as callback. Arguments (err, object).
+
+```javascript
+SzIPCalculator.getIpData('192.168.1.1/255.255.224.0', (err, res) => {
+  if (err) return console.error(err)
+  return console.log(res)
+})
+
+// it returns
+
+{ 
+  havemask: true,
+  string: '192.168.1.1',
+  decimal: 3232235777,
+  binary: '11000000.10101000.00000001.00000001',
+  cidr: 19,
+  netmask: '255.255.224.0',
+  private: true,
+  reserved: false,
+  lower: 
+  { 
+    string: '192.168.0.0',
+    binary: '11000000.10101000.00000000.00000000',
+    decimal: 3232235520 
+  },
+  higher: 
+  {
+    string: '192.168.31.255',
+    binary: '11000000.10101000.00011111.11111111',
+    decimal: 3232243711 
+  }
+}
+```
