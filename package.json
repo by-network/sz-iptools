@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/gsomenzi/sz-iptools/issues"
   },
-  "homepage": "https://github.com/gsomenzi/sz-iptools#readme"
+  "homepage": "https://github.com/gsomenzi/sz-iptools#readme",
+  "dependencies": {
+    "async": "^2.6.0"
+  }
 }
