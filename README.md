@@ -149,9 +149,9 @@ Try to connect to TCP port. Pass true to callback if can connect, otherwise, fal
 *callback* (function) Function executed as callback. Arguments (err, boolean).
 
 ```javascript
-SzConnTester.test('www.google.com.br', 443, 5000, (err, sameNetwork) => {
+SzConnTester.test('www.google.com.br', 443, 5000, (err, connStatus) => {
   if (err) return console.error(err)
-  if (!sameNetwork) return console.log('192.168.1.1 and 192.168.2.50 are NOT on the same network.')
-  return console.log('192.168.1.1 and 192.168.2.50 are on the same network.')
+  if (!connStatus) return console.log('Connection failiure.')
+  return console.log('Successful connection.')
 })
 ```
