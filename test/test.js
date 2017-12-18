@@ -6,7 +6,7 @@ const SzConnTester = require('../').ConnTester
 const assert = require('assert')
 const expect = require('expect.js')
 
-describe("ConnTester", function () {
+describe('ConnTester', function () {
   // www.google.com.br 443
   describe('#test - www.google.com.br:443', function () {
     it('Should return true to callback if www.google.com.br is listening on port 443.', function (done) {
@@ -89,11 +89,11 @@ describe('IPCalculator', function () {
       SzIpCalculator.getIpData('192.168.1.1/19', (err, res) => {
         if (err) return console.error(err)
         assert.equal(res.info.haveNetmask, true)
-        assert.equal(res.network.address, "192.168.0.0")
-        assert.equal(res.network.broadcast, "192.168.31.255")
+        assert.equal(res.network.address, '192.168.0.0')
+        assert.equal(res.network.broadcast, '192.168.31.255')
         assert.equal(res.network.hostsNumber, 8189)
-        assert.equal(res.lower.string, "192.168.0.1")
-        assert.equal(res.higher.string, "192.168.31.254")
+        assert.equal(res.lower.string, '192.168.0.1')
+        assert.equal(res.higher.string, '192.168.31.254')
       })
     })
   })
@@ -103,11 +103,11 @@ describe('IPCalculator', function () {
       SzIpCalculator.getIpData('192.168.1.1/255.255.224.0', (err, res) => {
         if (err) return console.error(err)
         assert.equal(res.info.haveNetmask, true)
-        assert.equal(res.network.address, "192.168.0.0")
-        assert.equal(res.network.broadcast, "192.168.31.255")
+        assert.equal(res.network.address, '192.168.0.0')
+        assert.equal(res.network.broadcast, '192.168.31.255')
         assert.equal(res.network.hostsNumber, 8189)
-        assert.equal(res.lower.string, "192.168.0.1")
-        assert.equal(res.higher.string, "192.168.31.254")
+        assert.equal(res.lower.string, '192.168.0.1')
+        assert.equal(res.higher.string, '192.168.31.254')
       })
     })
   })

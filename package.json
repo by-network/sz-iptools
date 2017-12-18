@@ -30,5 +30,10 @@
   "devDependencies": {
     "expect.js": "^0.3.1",
     "mocha": "^4.0.1"
+  },
+  "standard": {
+    "ignore": [
+      "/test/*"
+    ]
   }
 }

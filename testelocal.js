@@ -1,6 +1,6 @@
-const SzConnTester = require('./lib/ConnTester')
+const SzIFaceConfigurator = require('./lib/IFaceConfigurator')
 
-SzConnTester.test('8.8.8.8', 54, 10000, (err, res) => {
-  if (err) return console.error(err)
-  return console.log(res)
+SzIFaceConfigurator.getInterfaces({}, (err, interfaces) => {
+  if (err) return console.log(err)
+  console.log(interfaces)
 })
