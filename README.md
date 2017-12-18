@@ -34,7 +34,7 @@ Sz-IPtools is a set of tools to validate, calculate and manage IP address config
  ```
  ### Loading ConnTester module
  ```javascript
- const SzConnTester = require('sz-iptools').Conntester
+ const SzConnTester = require('sz-iptools').ConnTester
  ```
 
 ## API
