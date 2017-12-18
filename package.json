@@ -16,7 +16,10 @@
     "linux",
     "ipv4",
     "ipv6",
-    "network"
+    "network",
+    "ip-calculator",
+    "network-calculator",
+    "node-ip-calculator"
   ],
   "author": "Guilherme Somenzi <guilherme@somenzi.me>",
   "license": "MIT",
