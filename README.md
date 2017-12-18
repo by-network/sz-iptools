@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/gsomenzi/sz-iptools.svg?branch=master)](https://travis-ci.org/gsomenzi/sz-iptools)
 [![NPM version](https://img.shields.io/npm/v/sz-iptools.svg)](https://www.npmjs.com/package/sz-iptools)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 !!! AT DEVELOPING STAGE !!!
 
