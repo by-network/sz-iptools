@@ -1,9 +1,37 @@
 // IPCalculator
 
 const SzIpCalculator = require('../').IPCalculator
+const SzConnTester = require('../').ConnTester
+
 const assert = require('assert')
 const expect = require('expect.js')
 
+describe("ConnTester", function () {
+  // www.google.com.br 443
+  describe('#test - www.google.com.br:443', function () {
+    it('Should return true to callback if www.google.com.br is listening on port 443.', function (done) {
+      SzConnTester.test('www.google.com.br', 443, 1500, (err, res) => {
+        if (err) console.error(err)
+        if (res) {
+          assert.equal(res, true)
+          return done()
+        }
+      })
+    })
+  })
+  // www.google.com.br 444
+  describe('#test - www.google.com.br:444', function () {
+    it('Should return false to callback if www.google.com.br is NOT listening on port 444.', function (done) {
+      SzConnTester.test('www.google.com.br', 444, 1500, (err, res) => {
+        if (err) console.error(err)
+        if (!res) {
+          assert.equal(res, false)
+          return done()
+        }
+      })
+    })
+  })
+})
 describe('IPCalculator', function () {
   // 192.168.1.1
   describe('#isIPv4 - 192.168.1.1', function () {

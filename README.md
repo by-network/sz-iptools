@@ -1,14 +1,16 @@
 # Sz-IPtools
 
-[![Build Status](https://travis-ci.org/gsomenzi/sz-iptools.svg?branch=master)](https://travis-ci.org/gsomenzi/sz-iptools)
-[![NPM version](https://img.shields.io/npm/v/sz-iptools.svg)](https://www.npmjs.com/package/sz-iptools)
+[![Build Status](https://travis-ci.org/gsomenzi/sz-iptools.svg?branch=master)](https://travis-ci.org/gsomenzi/sz-iptools) 
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM version](https://img.shields.io/npm/v/sz-iptools.svg)](https://www.npmjs.com/package/sz-iptools) 
 
 !!! AT DEVELOPING STAGE !!!
 
 Sz-IPtools is a set of tools to validate, calculate and manage IP address configuration of a Linux server. It is write to use as a Node.js module. The tools are separate by modules, that can be invoked separately. The modules are:
 
  * <b>IPCalculator</b>: Some methods to help with IP address validation, get address details and calculate with subnet mask.
+
+ * <b>ConnTester</b>: Test TCP connections to remote hosts.
 
  * <b>IFaceConfigurator</b>: (NOT implemented yet)
 
@@ -29,6 +31,10 @@ Sz-IPtools is a set of tools to validate, calculate and manage IP address config
  ### Loading IPCalculator module
  ```javascript
  const SzIPCalculator = require('sz-iptools').IPCalculator
+ ```
+ ### Loading ConnTester module
+ ```javascript
+ const SzConnTester = require('sz-iptools').Conntester
  ```
 
 ## API
@@ -123,6 +129,27 @@ Evaluate if ip1 and ip2 are on the same network, based on netmask.
 
 ```javascript
 SzIPCalculator.onSameNetwork('192.168.1.1', '192.168.2.50', '255.255.255.0', (err, sameNetwork) => {
+  if (err) return console.error(err)
+  if (!sameNetwork) return console.log('192.168.1.1 and 192.168.2.50 are NOT on the same network.')
+  return console.log('192.168.1.1 and 192.168.2.50 are on the same network.')
+})
+```
+
+### ConnTester
+
+#### SzConnTester.test(host, port, timeout, callback)
+Try to connect to TCP port. Pass true to callback if can connect, otherwise, false is passed.
+
+*host* (string) Host or IP to connect.
+
+*port* (number) TCP port to be tested on host.
+
+*timeout* (number) - optional - Timeout to wait for connection in milliseconds. After that, false is passed to callback. default is 10000.
+
+*callback* (function) Function executed as callback. Arguments (err, boolean).
+
+```javascript
+SzConnTester.test('www.google.com.br', 443, 5000, (err, sameNetwork) => {
   if (err) return console.error(err)
   if (!sameNetwork) return console.log('192.168.1.1 and 192.168.2.50 are NOT on the same network.')
   return console.log('192.168.1.1 and 192.168.2.50 are on the same network.')
