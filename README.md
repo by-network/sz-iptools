@@ -42,19 +42,19 @@ Evaluate if the string passed is a valid IPv4 address.
 *callback* (function) Function executed as callback. Arguments (err, boolean).
 
 ```javascript
-SzIpValidation.isIPv4('192.168.1.1', (err, isValidIp) => {
+SzIPCalculator.isIPv4('192.168.1.1', (err, isValidIp) => {
   if (err) return console.error(err)
   if (!isValidIp) return console.log('192.168.1.1 NOT an valid IPv4 address')
   return console.log('192.168.1.1 Valid IPv4 address')
 })
 //or
-SzIpValidation.isIPv4('192.168.1.1/24', (err, res) => {
+SzIPCalculator.isIPv4('192.168.1.1/24', (err, res) => {
   if (err) return console.error(err)
   if (!isValidIp) return console.log('192.168.1.1/24 NOT an valid IPv4 address')
   return console.log('192.168.1.1/24 Valid IPv4 address')
 })
 //or
-SzIpValidation.isIPv4('192.168.1.1/255.255.255.0', (err, res) => {
+SzIPCalculator.isIPv4('192.168.1.1/255.255.255.0', (err, res) => {
   if (err) return console.error(err)
   if (!isValidIp) return console.log('192.168.1.1/255.255.255.0 NOT an valid IPv4 address')
   return console.log('192.168.1.1/255.255.255.0 Valid IPv4 address')
