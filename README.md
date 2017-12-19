@@ -36,6 +36,10 @@ Sz-IPtools is a set of tools to validate, calculate and manage IP address config
  ```javascript
  const SzConnTester = require('sz-iptools').ConnTester
  ```
+ ### Loading IFaceConfigurator module
+ ```javascript
+ const SzIFaceConfig = require('sz-iptools').IFaceConfigurator
+ ```
 
 ## API
 
@@ -155,3 +159,7 @@ SzConnTester.test('www.google.com.br', 443, 5000, (err, connStatus) => {
   return console.log('Successful connection.')
 })
 ```
+
+### IFaceConfigurator
+
+#### SzIFaceConfig.getInterfaces(filter, options, callback)

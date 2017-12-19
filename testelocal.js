@@ -1,6 +1,16 @@
-const SzIFaceConfigurator = require('./lib/IFaceConfigurator')
+const SzIFaceConfig = require('./lib/IFaceConfigurator')
 
-SzIFaceConfigurator.getInterfaces({}, (err, interfaces) => {
+let options = {
+  getIpData: false, 
+  sudo: false, 
+  args: [], 
+  exclude: ["vethaff756e@if45"]
+}
+SzIFaceConfig.getInterfaces('all', options, (err, interfaces) => {
   if (err) return console.log(err)
-  console.log(interfaces)
+  return console.log(JSON.stringify(interfaces))
+})
+SzIFaceConfig.getAddresses('eno1', options, (err, addresses) => {
+  if (err) return console.log(err)
+  return console.log(addresses)
 })
