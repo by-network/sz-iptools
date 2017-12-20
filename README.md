@@ -38,6 +38,10 @@ Sz-IPtools is a set of tools to validate, calculate and manage IP address config
  ```javascript
  const SzConnTester = require('sz-iptools').ConnTester
  ```
+ ### Loading IFaceConfigurator module
+ ```javascript
+ const SzIFaceConfig = require('sz-iptools').IFaceConfigurator
+ ```
 
 ## API
 
@@ -51,18 +55,19 @@ Evaluate if the string passed is a valid IPv4 address.
 *callback* (function) Function executed as callback. Arguments (err, boolean).
 
 ```javascript
+// Checks if 192.168.1.1 is a valid IPv4 address.
 SzIPCalculator.isIPv4('192.168.1.1', (err, isValidIp) => {
   if (err) return console.error(err)
   if (!isValidIp) return console.log('192.168.1.1 NOT an valid IPv4 address')
   return console.log('192.168.1.1 Valid IPv4 address')
 })
-//or
+// Checks if 192.168.1.1/24 is a valid IPv4 address.
 SzIPCalculator.isIPv4('192.168.1.1/24', (err, res) => {
   if (err) return console.error(err)
   if (!isValidIp) return console.log('192.168.1.1/24 NOT an valid IPv4 address')
   return console.log('192.168.1.1/24 Valid IPv4 address')
 })
-//or
+// Checks if 192.168.1.1/255.255.255.0 is a valid IPv4 address.
 SzIPCalculator.isIPv4('192.168.1.1/255.255.255.0', (err, res) => {
   if (err) return console.error(err)
   if (!isValidIp) return console.log('192.168.1.1/255.255.255.0 NOT an valid IPv4 address')
@@ -78,6 +83,7 @@ Gets IPv4 data based on address passed as string. If address contains netmask or
 *callback* (function) Function executed as callback. Arguments (err, object).
 
 ```javascript
+// Gets all possible data for 192.168.1.1 with netmask 255.255.224.0
 SzIPCalculator.getIpData('192.168.1.1/255.255.224.0', (err, res) => {
   if (err) return console.error(err)
   return console.log(res)
@@ -130,6 +136,7 @@ Evaluate if ip1 and ip2 are on the same network, based on netmask.
 *callback* (function) Function executed as callback. Arguments (err, boolean).
 
 ```javascript
+// Checks if 192.168.1.1 and 192.168.2.50 are on the same network if using 255.255.255.0 netmask.
 SzIPCalculator.onSameNetwork('192.168.1.1', '192.168.2.50', '255.255.255.0', (err, sameNetwork) => {
   if (err) return console.error(err)
   if (!sameNetwork) return console.log('192.168.1.1 and 192.168.2.50 are NOT on the same network.')
@@ -151,9 +158,49 @@ Try to connect to TCP port. Pass true to callback if can connect, otherwise, fal
 *callback* (function) Function executed as callback. Arguments (err, boolean).
 
 ```javascript
+// Test port TCP 443 of www.google.com.br address with timeout 5000 milliseconds.
 SzConnTester.test('www.google.com.br', 443, 5000, (err, connStatus) => {
   if (err) return console.error(err)
   if (!connStatus) return console.log('Connection failiure.')
   return console.log('Successful connection.')
 })
 ```
+<<<<<<< HEAD
+=======
+
+### IFaceConfigurator
+IFaceConfigurator module executes commands related to network and network interfaces. In some cases, may to need root or sudo access. Furthermore, almost all commands depends from iproute2.
+
+#### SzIFaceConfig.getInterfaces(filter, options, callback)
+Gets server's network interfaces with respective addresses.
+
+*filter* (object|string) - optional - Filter to return just some network interfaces.
+
+*options* (object) - optional - Object to manipulate de search and results from command.
+
+*callback* (function) Function executed as callback. Arguments (err, object).
+
+```javascript
+  // Options example
+  let options = {
+    getIpData: false, // gets data for all addresses
+    sudo: false, // executes command with sudo
+    args: [], // extra arguments to ip route commands - be careful
+    exclude: [] // array of interfaces name to exclude from search
+  }
+  // Gets all network interfaces - tip: {}, "", "all" or omiting filter returns all interfaces
+  SzIFaceConfig.getInterfaces('all', options, (err, interfaces) => {
+    if (err) return console.log(err)
+    return console.log(JSON.stringify(interfaces))
+  })
+  // Tip: {name: "eth0"} and "eth0" are the same thing.
+  SzIFaceConfig.getInterfaces({name: 'eth0'}, (err, interfaces) => {
+    if (err) return console.log(err)
+    return console.log(JSON.stringify(interfaces))
+  })
+  SzIFaceConfig.getInterfaces((err, interfaces) => {
+    if (err) return console.log(err)
+    return console.log(JSON.stringify(interfaces))
+  })
+```
+>>>>>>> development
