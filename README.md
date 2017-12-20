@@ -165,10 +165,6 @@ SzConnTester.test('www.google.com.br', 443, 5000, (err, connStatus) => {
   return console.log('Successful connection.')
 })
 ```
-<<<<<<< HEAD
-=======
-
-### IFaceConfigurator
 IFaceConfigurator module executes commands related to network and network interfaces. In some cases, may to need root or sudo access. Furthermore, almost all commands depends from iproute2.
 
 #### SzIFaceConfig.getInterfaces(filter, options, callback)
@@ -203,4 +199,3 @@ Gets server's network interfaces with respective addresses.
     return console.log(JSON.stringify(interfaces))
   })
 ```
->>>>>>> development
