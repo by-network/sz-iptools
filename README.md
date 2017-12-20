@@ -6,8 +6,6 @@
 
 !!! AT DEVELOPING STAGE !!!
 
-=== If you have any suggestion, please submit an issue with the tag "enhancement". I will be happy to work with some new ideas. ===
-
 Sz-IPtools is a set of tools to validate, calculate and manage IP address configuration of a Linux server. It is write to use as a Node.js module. The tools are separate by modules, that can be invoked separately. The modules are:
 
  * <b>IPCalculator</b>: Some methods to help with IP address validation, get address details and calculate with subnet mask.
@@ -165,6 +163,8 @@ SzConnTester.test('www.google.com.br', 443, 5000, (err, connStatus) => {
   return console.log('Successful connection.')
 })
 ```
+
+### IFaceConfigurator
 IFaceConfigurator module executes commands related to network and network interfaces. In some cases, may to need root or sudo access. Furthermore, almost all commands depends from iproute2.
 
 #### SzIFaceConfig.getInterfaces(filter, options, callback)
