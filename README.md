@@ -177,6 +177,12 @@ Gets server's network interfaces with respective addresses.
 *callback* (function) Function executed as callback. Arguments (err, object).
 
 ```javascript
+  // Filter example - filter uses "LIKE" and "AND" condition, so the filter above returns just interfaces with eth0 in name, ether in type and mtu 1500
+  let filter = {
+    name: "eth0",
+    type: "ether",
+    mtu: 1500
+  }
   // Options example
   let options = {
     getIpData: false, // gets data for all addresses
