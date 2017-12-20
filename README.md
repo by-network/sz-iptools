@@ -189,6 +189,7 @@ Gets server's network interfaces with respective addresses.
     if (err) return console.log(err)
     return console.log(JSON.stringify(interfaces))
   })
+  // Tip: {name: "eth0"} and "eth0" are the same thing.
   SzIFaceConfig.getInterfaces({name: 'eth0'}, (err, interfaces) => {
     if (err) return console.log(err)
     return console.log(JSON.stringify(interfaces))

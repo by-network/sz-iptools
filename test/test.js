@@ -2,9 +2,10 @@
 
 const SzIpCalculator = require('../').IPCalculator
 const SzConnTester = require('../').ConnTester
+const SzIFaceConfig = require('../').IFaceConfigurator
 
 const assert = require('assert')
-const expect = require('expect.js')
+const expect = require('chai').expect
 
 describe('ConnTester', function () {
   // www.google.com.br 443
@@ -126,6 +127,59 @@ describe('IPCalculator', function () {
       SzIpCalculator.onSameNetwork('192.168.1.1', '192.168.2.1', '255.255.255.0', (err, sameNetwork) => {
         if (err) return console.error(err)
         assert.equal(sameNetwork, false)
+      })
+    })
+  })
+})
+describe('IFaceConfigurator', function () {
+  // all
+  describe('#getInterfaces - all', function () {
+    it('Should return object with all network interfaces to callback.', function (done) {
+      let options = {
+        getIpData: false,
+        sudo: false,
+        args: [],
+        exclude: []
+      }
+      SzIFaceConfig.getInterfaces('all', options, (err, res) => {
+        if (err) console.error(err)
+        if (res) {
+          expect(res).to.be.a('array')
+          expect(res).to.have.length.above(0)
+          expect(res[0]).to.have.property('name')
+          expect(res[0]).to.have.property('type')
+          return done()
+        }
+      })
+    })
+  })
+  // Without options
+  describe('#getInterfaces - all without options', function () {
+    it('Should return object with all network interfaces to callback.', function (done) {
+      SzIFaceConfig.getInterfaces('all', (err, res) => {
+        if (err) console.error(err)
+        if (res) {
+          expect(res).to.be.a('array')
+          expect(res).to.have.length.above(0)
+          expect(res[0]).to.have.property('name')
+          expect(res[0]).to.have.property('type')
+          return done()
+        }
+      })
+    })
+  })
+  // Just callback
+  describe('#getInterfaces - all just callback', function () {
+    it('Should return object with all network interfaces to callback.', function (done) {
+      SzIFaceConfig.getInterfaces((err, res) => {
+        if (err) console.error(err)
+        if (res) {
+          expect(res).to.be.a('array')
+          expect(res).to.have.length.above(0)
+          expect(res[0]).to.have.property('name')
+          expect(res[0]).to.have.property('type')
+          return done()
+        }
       })
     })
   })
