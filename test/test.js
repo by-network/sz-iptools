@@ -130,6 +130,24 @@ describe('IPCalculator', function () {
       })
     })
   })
+  // 255.255.254.0 -> 23
+  describe('#convertNetmaskToCidr - 255.255.254.0', function () {
+    it('Should pass number 23 to callback after convert 255.255.254.0 to CIDR prefix.', function () {
+      SzIpCalculator.convertNetmaskToCidr('255.255.254.0', (err, cidr) => {
+        if (err) return console.error(err)
+        assert.equal(cidr, 23)
+      })
+    })
+  })
+  // 23 -> 255.255.254.0
+  describe('#convertCidrToNetmask - 23', function () {
+    it('Should pass 255.255.254.0 to callback after convert 23 to netmask string.', function () {
+      SzIpCalculator.convertCidrToNetmask('23', (err, netmask) => {
+        if (err) return console.error(err)
+        assert.equal(netmask, "255.255.254.0")
+      })
+    })
+  })
 })
 describe('IFaceConfigurator', function () {
   // all
@@ -180,6 +198,59 @@ describe('IFaceConfigurator', function () {
           expect(res[0]).to.have.property('type')
           return done()
         }
+      })
+    })
+  })
+  // getAddresses
+  describe('#getAddresses - first interface founded', function () {
+    it('Should return object with all IPv4 addresses for the first interfaces to callback.', function (done) {
+      SzIFaceConfig.getInterfaces("all", {sudo: true}, (err, ifaces) => {
+        if (err) console.error(err)
+        SzIFaceConfig.getAddresses(ifaces[0].name, {}, (err, addresses) => {
+          if (err) console.error(err)
+          if (addresses) {
+            expect(addresses).to.be.a('array')
+            expect(addresses).to.have.length.above(0)
+            expect(addresses[0]).to.be.a('string')
+            return done()
+          }
+        })
+      })
+    })
+  })
+  // addAddress
+  describe('#addAddress - 192.168.88.1/24 to first interface founded and not loopback', function () {
+    it('Should add 192.168.88.1/24 to the first interface founded (not loopback).', function (done) {
+      SzIFaceConfig.getInterfaces({type: "ether"}, {sudo: true}, (err, ifaces) => {
+        if (err) console.error(err)
+        SzIFaceConfig.addAddress("192.168.88.1", "255.255.255.0", ifaces[0].name, {sudo: true}, (err, addresses) => {
+          if (err) console.error(err)
+          if (addresses) {
+            expect(addresses).to.be.a('array')
+            expect(addresses).to.have.length.above(0)
+            expect(addresses).to.contain.members(["192.168.88.1/24"])
+            return done()
+          }
+        })
+      })
+    })
+  })
+  describe('#addAddress - 192.168.88.1/24 to first interface founded and not loopback', function () {
+    it('Should add 192.168.88.1/24 to the first interface founded (not loopback).', function (done) {
+      SzIFaceConfig.getInterfaces({type: "ether"}, {sudo: true}, (err, ifaces) => {
+        if (err) console.error(err)
+        SzIFaceConfig.addAddress("192.168.88.1", "255.255.255.0", ifaces[0].name, {sudo: true}, (err, addresses) => {
+          if (err) console.error(err)
+          SzIFaceConfig.delAddress("192.168.88.1", "255.255.255.0", ifaces[0].name, {sudo: true}, (err, addresses) => {
+            if (err) console.error(err)
+            if (addresses) {
+              expect(addresses).to.be.a('array')
+              expect(addresses).to.have.length.above(0)
+              expect(addresses).to.not.contain.members(["192.168.88.1/24"])
+              return done()
+            }
+          })
+        })
       })
     })
   })
