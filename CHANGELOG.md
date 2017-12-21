@@ -1,4 +1,6 @@
-# v1.12.0
+# v1.3.0
+- Added option to choose table in getRoutes, in options object.
+# v1.2.0
 - Exposed method convertNetmaskToCidr from *IPCalculator*.
 - Exposed method convertCidrToNetmask from *IPCalculator*.
 - Method addAddress implemented for IFaceConfigurator. Now the module can add IP address to an interface..

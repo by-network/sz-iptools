@@ -2,16 +2,24 @@ const SzIPCalculator = require('./lib/IPCalculator')
 const SzIFaceConfig = require('./lib/IFaceConfigurator')
 const SzIPRouter = require('./lib/IPRouter')
 
-let options = {
-  getIpData: false,
-  sudo: false,
-  args: [],
-  exclude: []
-}
+// let options = {
+//   getIpData: false,
+//   sudo: false,
+//   args: [],
+//   exclude: []
+// }
+// SzIFaceConfig.getInterfaces((err, interfaces) => {
+//   if (err) return console.log(err)
+//   return console.log(interfaces)
+// })
 // SzIPCalculator.getIpData('0.0.0.0/0', (err, res) => {
 //   if (err) return console.log(err)
 //   return console.log(res)
 // })
+SzIFaceConfig.getAddresses('eno1', (err, addresses) => {
+  if (err) return console.log(err)
+  return console.log(addresses)
+})
 // let optionsRoutes = {
 //   sudo: false,
 //   getIpData: false
@@ -29,13 +37,13 @@ let optionsAddInterface = {
   getIpData: false,
   args: []
 }
-// SzIFaceConfig.addAddress('192.168.25.1', "255.255.255.0", "eno1", optionsAddInterface, (err, res) => {
-//   if (err) return console.log(err)
-//   return console.log(res)
-// })
-setTimeout(() => {
-  SzIFaceConfig.delAddress('192.168.25.1', "255.255.255.0", "eno1", optionsAddInterface, (err, res) => {
-    if (err) return console.log(err)
-    return console.log(res)
-  })
-}, 5000)
+let optionsRoutes = {
+  table: "main", // specify table used
+  getIpData: false, // gets data for all addresses - see IPCalculator.getIpData()
+  sudo: true, // executes command with sudo
+  args: [], // extra arguments to ip route commands - be careful
+}
+SzIPRouter.getRoutes(optionsRoutes, (err, routes) => {
+  if (err) return console.error(err)
+  return console.log(routes)
+})
