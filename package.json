@@ -1,6 +1,6 @@
 {
   "name": "sz-iptools",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "sz-iptools is a set of tools to validate and manage ip data and configurations using Node.js.",
   "main": "index.js",
   "scripts": {
