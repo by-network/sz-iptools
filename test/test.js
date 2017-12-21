@@ -235,8 +235,8 @@ describe('IFaceConfigurator', function () {
       })
     })
   })
-  describe('#addAddress - 192.168.88.1/24 to first interface founded and not loopback', function () {
-    it('Should add 192.168.88.1/24 to the first interface founded (not loopback).', function (done) {
+  describe('#delAddress - 192.168.88.1/24 to first interface founded and not loopback', function () {
+    it('Should add and after remove 192.168.88.1/24 to the first interface founded (not loopback).', function (done) {
       SzIFaceConfig.getInterfaces({type: "ether"}, {sudo: true}, (err, ifaces) => {
         if (err) console.error(err)
         SzIFaceConfig.addAddress("192.168.88.1", "255.255.255.0", ifaces[0].name, {sudo: true}, (err, addresses) => {
