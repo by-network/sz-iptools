@@ -16,10 +16,10 @@ const SzIPRouter = require('./lib/IPRouter')
 //   if (err) return console.log(err)
 //   return console.log(res)
 // })
-SzIFaceConfig.getAddresses('eno1', (err, addresses) => {
-  if (err) return console.log(err)
-  return console.log(addresses)
-})
+// SzIFaceConfig.getAddresses('eno1', (err, addresses) => {
+//   if (err) return console.log(err)
+//   return console.log(addresses)
+// })
 // let optionsRoutes = {
 //   sudo: false,
 //   getIpData: false
@@ -32,18 +32,22 @@ SzIFaceConfig.getAddresses('eno1', (err, addresses) => {
 //   if (err) return console.log(err)
 //   return console.log("Default gateway is "+gateway+".")
 // })
-let optionsAddInterface = {
-  sudo: true,
-  getIpData: false,
-  args: []
-}
+// let optionsAddInterface = {
+//   sudo: true,
+//   getIpData: false,
+//   args: []
+// }
 let optionsRoutes = {
-  table: "main", // specify table used
+  table: 'main', // specify table used
   getIpData: false, // gets data for all addresses - see IPCalculator.getIpData()
   sudo: true, // executes command with sudo
-  args: [], // extra arguments to ip route commands - be careful
+  args: [] // extra arguments to ip route commands - be careful
 }
-SzIPRouter.getRoutes(optionsRoutes, (err, routes) => {
+// SzIPRouter.getIpForward((err, res) => {
+//   if (err) return console.error(err)
+//   return console.log(res)
+// })
+SzIPRouter.setIpForward(true, (err, res) => {
   if (err) return console.error(err)
-  return console.log(routes)
+  return console.log(res)
 })
