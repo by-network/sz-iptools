@@ -4,7 +4,7 @@
   "description": "sz-iptools is a set of tools to validate and manage ip data and configurations using Node.js.",
   "main": "index.js",
   "scripts": {
-    "test": "sudo node ./node_modules/mocha/bin/mocha",
+    "test": "node ./node_modules/mocha/bin/mocha",
     "start": "node index"
   },
   "repository": {
