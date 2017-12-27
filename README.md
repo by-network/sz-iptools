@@ -307,9 +307,13 @@ Adds the specified IP address to network interface. Returns an array with update
 *callback* (function) Function executed as callback. Arguments (err, object).
 
 Possible constructors: 
+
  (ip, netmask, iface, options, callback)
+
  (ip, netmask, iface, callback) 
+
  (ip, iface, options, callback) 
+
  (ip, iface, callback)
 
 ```javascript
@@ -338,9 +342,13 @@ Removes the specified IP address to network interface. Returns an array with upd
 *callback* (function) Function executed as callback. Arguments (err, object).
 
 Possible constructors: 
+
  (ip, netmask, iface, options, callback)
+
  (ip, netmask, iface, callback) 
+
  (ip, iface, options, callback) 
+
  (ip, iface, callback)
 
 ```javascript
@@ -366,7 +374,9 @@ Gets all routes from a table. When table is not specified, uses "main" table.
 *callback* (function) Function executed as callback. Arguments (err, object).
 
 Possible constructors: 
+
  (options, callback) 
+
  (callback)
 
 ```javascript
@@ -416,5 +426,31 @@ Gets the default gateway from main table as string.
   SzIPRouter.getDefaultGateway((err, gateway) => {
     if (err) return console.log(err)
     return console.log(gateway) // Must log somethin like 192.168.1.1
+  })
+```
+
+#### SzIPRouter.getIpForward(callback)
+Gets current setting whether IPv4 forwarding is enabled.
+
+*callback* (function) Function executed as callback. Arguments (err, boolean).
+
+```javascript
+  SzIPRouter.getIpForward((err, enabled) => {
+    if (err) return console.log(err)
+    return console.log(enabled) // Must log true or false
+  })
+```
+
+#### SzIPRouter.setIpForward(enable, callback)
+Enables or disables IPv4 forwarding on Linux system and return current status after changes. Needs *sysctl* command and write access to /etc/sysctl.conf file.
+
+*enable* Indicates whether routing should be enabled or disabled
+
+*callback* (function) Function executed as callback. Arguments (err, boolean).
+
+```javascript
+  SzIPRouter.setIpForward(true, (err, enabled) => {
+    if (err) return console.log(err)
+    return console.log(enabled) // Must enable IPv4 routing and log true
   })
 ```

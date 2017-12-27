@@ -3,6 +3,7 @@
 const SzIpCalculator = require('../').IPCalculator
 const SzConnTester = require('../').ConnTester
 const SzIFaceConfig = require('../').IFaceConfigurator
+const SzIPRouter = require('../').IPRouter
 
 const assert = require('assert')
 const expect = require('chai').expect
@@ -251,6 +252,37 @@ describe('IFaceConfigurator', function () {
             }
           })
         })
+      })
+    })
+  })
+})
+describe('IPRouter', function () {
+  // getDefaultGateway
+  describe('#getDefaultGateway', function () {
+    it('Should return default gateway as string.', function (done) {
+      SzIPRouter.getDefaultGateway((err, res) => {
+        if (err) console.error(err)
+        expect(isNaN(res[0])).to.be.equal(false)
+        expect(res.indexOf('.')).to.be.greaterThan(-1)
+        done()
+      })
+    })
+  })
+  // getIpForward
+  describe('#getIpForward', function () {
+    it('Should return true or false whether IPv4 forwarding is enabled or not.', () => {
+      SzIPRouter.getIpForward((err, res) => {
+        if (err) console.error(err)
+        expect(res).to.be('boolean')
+      })
+    })
+  })
+  // setItForward
+  describe('#setIpForward - true', function () {
+    it('Should return true whether IPv4 forwarding is enabled after command.', () => {
+      SzIPRouter.setIpForward(true, (err, res) => {
+        if (err) console.error(err)
+        assert.equal(res, true)
       })
     })
   })
