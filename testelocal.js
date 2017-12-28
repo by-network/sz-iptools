@@ -52,6 +52,6 @@ const SzIPRouter = require('./lib/IPRouter')
 //   return console.log(res)
 // })
 SzIFaceConfig.getDnsServers((err, servers) => {
-  if (err) return console.error(err)
-  return console.log(servers)
+  if (err) return console.log(err)
+  return console.log(servers) //must log array with IP of DNS servers
 })

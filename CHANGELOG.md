@@ -1,5 +1,5 @@
 # v1.6.0
-- Added method getDnsServer to *IFaceConfigurator*
+- Added method getDnsServers to *IFaceConfigurator*
 # v1.5.0
 - Added methods getIpForward and setIpForward to *IPRouter*.
 - Some bug fixes in IPRouter module.
