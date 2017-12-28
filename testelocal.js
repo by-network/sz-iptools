@@ -37,17 +37,21 @@ const SzIPRouter = require('./lib/IPRouter')
 //   getIpData: false,
 //   args: []
 // }
-let optionsRoutes = {
-  table: 'main', // specify table used
-  getIpData: false, // gets data for all addresses - see IPCalculator.getIpData()
-  sudo: true, // executes command with sudo
-  args: [] // extra arguments to ip route commands - be careful
-}
+// let optionsRoutes = {
+//   table: 'main', // specify table used
+//   getIpData: false, // gets data for all addresses - see IPCalculator.getIpData()
+//   sudo: true, // executes command with sudo
+//   args: [] // extra arguments to ip route commands - be careful
+// }
 // SzIPRouter.getIpForward((err, res) => {
 //   if (err) return console.error(err)
 //   return console.log(res)
 // })
-SzIPRouter.setIpForward(true, (err, res) => {
+// SzIPRouter.setIpForward(true, (err, res) => {
+//   if (err) return console.error(err)
+//   return console.log(res)
+// })
+SzIFaceConfig.getDnsServers((err, servers) => {
   if (err) return console.error(err)
-  return console.log(res)
+  return console.log(servers)
 })

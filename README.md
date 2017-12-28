@@ -363,6 +363,18 @@ Possible constructors:
   })
 ```
 
+#### SzIFaceConfig.getDnsServers(callback)
+Parses DNS servers from /etc/resolv.conf and returns as a string array. 
+
+*callback* (function) Function executed as callback. Arguments (err, array).
+
+```javascript
+  SzIFaceConfig.getDnsServers((err, servers) => {
+    if (err) return console.log(err)
+    return console.log(servers) //must log array with IP of DNS servers
+  })
+```
+
 ### IPRouter
 IPRouter module executes commands related to routes, tables and rules. In some cases, may to need root or sudo access. Furthermore, almost all commands depends from iproute2.
 
