@@ -265,6 +265,22 @@ describe('IFaceConfigurator', function () {
       })
     })
   })
+  describe('#getNetworkManagerProcs', function () {
+    it('Should return an array with NetworkManager procs', function () {
+      SzIFaceConfig.getNetworkManagerProcs((err, res) => {
+        assert.equal(err, null)
+        expect(res).to.be.a('array')
+      })
+    })
+  })
+  describe('#getDhclientProcs', function () {
+    it('Should return an array with dhclient procs', function () {
+      SzIFaceConfig.getDhclientProcs((err, res) => {
+        assert.equal(err, null)
+        expect(res).to.be.a('array')
+      })
+    })
+  })
 })
 describe('IPRouter', function () {
   // getDefaultGateway

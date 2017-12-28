@@ -7,12 +7,31 @@
 Sz-IPtools is a set of tools to validate, calculate and manage IP address configuration of a Linux server. It is write to use as a Node.js module. The tools are separate by modules, that can be invoked separately. The modules are:
 
  * <b>IPCalculator</b>: Some methods to help IP address validation, get address details and calculate netwok information with subnet mask.
+   * isIPv4
+   * getIpData
+   * onSameNetwork
+   * convertCidrToNetmask
+   * convertNetmaskToCidr
 
  * <b>ConnTester</b>: Tests TCP connections to remote hosts.
+   * test
 
  * <b>IFaceConfigurator</b>: (Just some methods implemented) Gets network interfaces information. Manages network interfaces and IP address.
+   * getInterfaces
+   * getAddresses
+   * addAddress
+   * delAddress
+   * getDnsServers
+   * getNetworkManagerProcs
+   * killNetworkManagerProcs
+   * getDhclientProcs
+   * killDhclientProcs
 
  * <b>IPRouter</b>: (Just some methods implemented) Gets routes information. Manages routes, tables and routing rules.
+   * getRoutes
+   * getDefaultGateway
+   * getIpForward
+   * setIpForward
 
 ## Support
 
@@ -21,7 +40,7 @@ Sz-IPtools is a set of tools to validate, calculate and manage IP address config
 ## Installation
 
 ```sh
-> npm install sz-tools --save
+> npm install sz-iptools --save
 ```
 
 ## Node.js
@@ -372,6 +391,77 @@ Parses DNS servers from /etc/resolv.conf and returns as a string array.
   SzIFaceConfig.getDnsServers((err, servers) => {
     if (err) return console.log(err)
     return console.log(servers) //must log array with IP of DNS servers
+  })
+```
+
+#### SzIFaceConfig.getNetworkManagerProcs(callback)
+Gets an array of NetworkManager processes. An empty array is a signal that NetworkManager is not running.
+
+*callback* (function) Function executed as callback. Arguments (err, array).
+
+```javascript
+  SzIFaceConfig.getNetworkManagerProcs((err, procs) => {
+    if (err) return console.log(err)
+    return console.log(procs) //must log array with NetworkManager processes.
+  })
+```
+
+#### SzIFaceConfig.killNetworkManagerProcs(options, callback)
+Tries to stop NetworkManager service and kill pendant processes. Returns array of NetworkManager processes after command. An empty array is a signal that NetworkManager is no more running.
+
+*options* (object) - optional - Object to manipulate de search and results from command.
+
+*callback* (function) Function executed as callback. Arguments (err, array).
+
+Possible constructors: 
+
+ (options, callback)
+
+ (callback)
+ 
+```javascript
+  let options = {
+    sudo: true
+  }
+  SzIFaceConfig.killNetworkManagerProcs(options, (err, procs) => {
+    if (err) return console.log(err)
+    return console.log(procs) //must log array with NetworkManager processes. Empty array if OK.
+  })
+```
+
+#### SzIFaceConfig.getDhclientProcs(callback)
+Gets an array of dhclient processes. An empty array is a signal that dhclient is not running.
+
+*callback* (function) Function executed as callback. Arguments (err, array).
+
+```javascript
+  SzIFaceConfig.getDhclientProcs((err, procs) => {
+    if (err) return console.log(err)
+    return console.log(procs) //must log array with dhclient processes.
+  })
+```
+
+#### SzIFaceConfig.killDhclientProcs(iface, options, callback)
+Tries to kill dhclient processes for specific or all interfaces. Returns array of dhclient processes after command. An empty array is a signal that dhclient is no more running.
+
+*options* (object) - optional - Object to manipulate de search and results from command.
+
+*callback* (function) Function executed as callback. Arguments (err, array).
+
+Possible constructors: 
+
+ (iface, options, callback)
+
+ (iface, callback)
+
+```javascript
+  let options = {
+    sudo: true
+  }
+  // Tip: "all" kills dhclient for all interfaces.
+  SzIFaceConfig.killDhclientProcs('all', options, (err, procs) => {
+    if (err) return console.log(err)
+    return console.log(procs) //must log array with dhclient processes. Empty array if OK.
   })
 ```
 

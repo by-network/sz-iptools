@@ -1,3 +1,8 @@
+# v1.7.0
+- Added method getNetworkManagerProcs to *IFaceConfigurator*
+- Added method killNetworkManagerProcs to *IFaceConfigurator*
+- Added method getDhclientProcs to *IFaceConfigurator*
+- Added method killDhclientProcs to *IFaceConfigurator*
 # v1.6.0
 - Added method getDnsServers to *IFaceConfigurator*
 # v1.5.0

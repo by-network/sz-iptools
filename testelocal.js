@@ -51,7 +51,19 @@ const SzIPRouter = require('./lib/IPRouter')
 //   if (err) return console.error(err)
 //   return console.log(res)
 // })
-SzIFaceConfig.getDnsServers((err, servers) => {
+// SzIFaceConfig.getDnsServers((err, servers) => {
+//   if (err) return console.log(err)
+//   return console.log(servers) //must log array with IP of DNS servers
+// })
+// SzIFaceConfig.getDhclientProcs((err, procs) => {
+//   if (err) return console.error(err)
+//   return console.log(procs)
+// })
+let options = {
+  sudo: true
+}
+// Tip: "all" kills dhclient for all interfaces.
+SzIFaceConfig.killDhclientProcs('all', options, (err, procs) => {
   if (err) return console.log(err)
-  return console.log(servers) //must log array with IP of DNS servers
+  return console.log(procs) //must log array with dhclient processes. Empty array if OK.
 })
