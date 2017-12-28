@@ -255,6 +255,16 @@ describe('IFaceConfigurator', function () {
       })
     })
   })
+  describe('#getDnsServers', function () {
+    it('Should return an array with DNS servers listed on /etc/resolv.conf.', function () {
+      SzIFaceConfig.getDnsServers((err, res) => {
+        assert.equal(err, null)
+        expect(res).to.be.a('array')
+        expect(res).to.have.length.above(0)
+        expect(res[0].indexOf('.')).to.be.greaterThan(-1)
+      })
+    })
+  })
 })
 describe('IPRouter', function () {
   // getDefaultGateway
