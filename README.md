@@ -35,7 +35,7 @@ Sz-IPtools is a set of tools to validate, calculate and manage IP address config
 
 ## Support
 
- * Node.js (tested on > 7.x)
+ * Node.js (tested on >= 7.x)
  
 ## Installation
 
