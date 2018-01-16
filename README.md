@@ -29,6 +29,7 @@ Sz-IPtools is a set of tools to validate, calculate and manage IP address config
 
  * <b>IPRouter</b>: (Just some methods implemented) Gets routes information. Manages routes, tables and routing rules.
    * getRoutes
+   * getTables
    * getDefaultGateway
    * getIpForward
    * setIpForward
@@ -45,15 +46,15 @@ Sz-IPtools is a set of tools to validate, calculate and manage IP address config
 
 ## Node.js
 
- ### Loading IPCalculator module
+### Loading IPCalculator module
  ```javascript
  const SzIPCalculator = require('sz-iptools').IPCalculator
  ```
- ### Loading ConnTester module
+### Loading ConnTester module
  ```javascript
  const SzConnTester = require('sz-iptools').ConnTester
  ```
- ### Loading IFaceConfigurator module
+### Loading IFaceConfigurator module
  ```javascript
  const SzIFaceConfig = require('sz-iptools').IFaceConfigurator
  ```
@@ -71,7 +72,7 @@ Evaluate if the string passed is a valid IPv4 address.
 
 *string* (string) IP address to evaluate. Must to be a string, can contain netmask, cidr prefix or not.
 
-*callback* (function) Function executed as callback. Arguments (err, boolean).
+*callback* (function) Function executed as callback. Arguments (Error, Boolean).
 
 ```javascript
 // Checks if 192.168.1.1 is a valid IPv4 address.
@@ -99,7 +100,7 @@ Gets IPv4 data based on address passed as string. If address contains netmask or
 
 *string* (string) IP address to evaluate. Must to be a string, can contain netmask, cidr prefix or not.
 
-*callback* (function) Function executed as callback. Arguments (err, object).
+*callback* (function) Function executed as callback. Arguments (Error, Object).
 
 ```javascript
 // Gets all possible data for 192.168.1.1 with netmask 255.255.224.0
@@ -152,7 +153,7 @@ Evaluate if ip1 and ip2 are on the same network, based on netmask.
 
 *netmask* (string) Subnet user for evaluation.
 
-*callback* (function) Function executed as callback. Arguments (err, boolean).
+*callback* (function) Function executed as callback. Arguments (Error, Boolean).
 
 ```javascript
 // Checks if 192.168.1.1 and 192.168.2.50 are on the same network if using 255.255.255.0 netmask.
@@ -168,7 +169,7 @@ Converts a CIDR prefix, passed as a string or number, to a netmask string with d
 
 *cidr* (string|number) CIDR prefix. Value >= 0 and <= 32 passed as string or number.
 
-*callback* (function) Function executed as callback. Arguments (err, string).
+*callback* (function) Function executed as callback. Arguments (Error, String).
 
 ```javascript
 SzIpCalculator.convertCidrToNetmask('23', (err, netmask) => {
@@ -182,7 +183,7 @@ Converts a netmask (dotted notation), passed as a string, to a CIDR prefix.
 
 *cidr* (string|number) CIDR prefix. Value >= 0 and <= 32 passed as string or number.
 
-*callback* (function) Function executed as callback. Arguments (err, string).
+*callback* (function) Function executed as callback. Arguments (Error, String).
 
 ```javascript
 SzIpCalculator.convertNetmaskToCidr('255.255.254.0', (err, netmask) => {
@@ -202,7 +203,7 @@ Try to connect to TCP port. Pass true to callback if can connect, otherwise, fal
 
 *timeout* (number) - optional - Timeout to wait for connection in milliseconds. After that, false is passed to callback. default is 10000.
 
-*callback* (function) Function executed as callback. Arguments (err, boolean).
+*callback* (function) Function executed as callback. Arguments (Error, Boolean).
 
 ```javascript
 // Test port TCP 443 of www.google.com.br address with timeout 5000 milliseconds.
@@ -223,7 +224,7 @@ Gets server's network interfaces with respective addresses. Returns an array wit
 
 *options* (object) - optional - Object to manipulate de search and results from command.
 
-*callback* (function) Function executed as callback. Arguments (err, object).
+*callback* (function) Function executed as callback. Arguments (Error, Object).
 
 ```javascript
   // Filter example - filter uses "LIKE" and "AND" condition, so the filter above returns just interfaces with eth0 in name, ether in type and mtu 1500
@@ -293,7 +294,7 @@ Gets server's network interfaces with respective addresses. Returns an array wit
 
 *options* (object) - optional - Object to manipulate de search and results from command.
 
-*callback* (function) Function executed as callback. Arguments (err, object).
+*callback* (function) Function executed as callback. Arguments (Error, Object).
 
 ```javascript
   let options = {
@@ -323,7 +324,7 @@ Adds the specified IP address to network interface. Returns an array with update
 
 *options* (object) - optional - Object to manipulate de search and results from command.
 
-*callback* (function) Function executed as callback. Arguments (err, object).
+*callback* (function) Function executed as callback. Arguments (Error, Object).
 
 Possible constructors: 
 
@@ -358,7 +359,7 @@ Removes the specified IP address to network interface. Returns an array with upd
 
 *options* (object) - optional - Object to manipulate de search and results from command.
 
-*callback* (function) Function executed as callback. Arguments (err, object).
+*callback* (function) Function executed as callback. Arguments (Error, Object).
 
 Possible constructors: 
 
@@ -385,7 +386,7 @@ Possible constructors:
 #### SzIFaceConfig.getDnsServers(callback)
 Parses DNS servers from /etc/resolv.conf and returns as a string array. 
 
-*callback* (function) Function executed as callback. Arguments (err, array).
+*callback* (function) Function executed as callback. Arguments (Error, Array<String>).
 
 ```javascript
   SzIFaceConfig.getDnsServers((err, servers) => {
@@ -397,7 +398,7 @@ Parses DNS servers from /etc/resolv.conf and returns as a string array.
 #### SzIFaceConfig.getNetworkManagerProcs(callback)
 Gets an array of NetworkManager processes. An empty array is a signal that NetworkManager is not running.
 
-*callback* (function) Function executed as callback. Arguments (err, array).
+*callback* (function) Function executed as callback. Arguments (Error, Array<Number>).
 
 ```javascript
   SzIFaceConfig.getNetworkManagerProcs((err, procs) => {
@@ -411,7 +412,7 @@ Tries to stop NetworkManager service and kill pendant processes. Returns array o
 
 *options* (object) - optional - Object to manipulate de search and results from command.
 
-*callback* (function) Function executed as callback. Arguments (err, array).
+*callback* (function) Function executed as callback. Arguments (Error, Array<Number>).
 
 Possible constructors: 
 
@@ -432,7 +433,7 @@ Possible constructors:
 #### SzIFaceConfig.getDhclientProcs(callback)
 Gets an array of dhclient processes. An empty array is a signal that dhclient is not running.
 
-*callback* (function) Function executed as callback. Arguments (err, array).
+*callback* (function) Function executed as callback. Arguments (Error, Array<Number>).
 
 ```javascript
   SzIFaceConfig.getDhclientProcs((err, procs) => {
@@ -446,7 +447,7 @@ Tries to kill dhclient processes for specific or all interfaces. Returns array o
 
 *options* (object) - optional - Object to manipulate de search and results from command.
 
-*callback* (function) Function executed as callback. Arguments (err, array).
+*callback* (function) Function executed as callback. Arguments (Error, Array<Number>).
 
 Possible constructors: 
 
@@ -473,7 +474,7 @@ Gets all routes from a table. When table is not specified, uses "main" table.
 
 *options* (object) - optional - Object to manipulate de search and results from command.
 
-*callback* (function) Function executed as callback. Arguments (err, object).
+*callback* (function) Function executed as callback. Arguments (Error, Object).
 
 Possible constructors: 
 
@@ -493,7 +494,7 @@ Possible constructors:
     return console.log(routes)
   })
 
-  // common return
+  // normal output
 
   [ 
     { destination: '0.0.0.0/0',
@@ -522,7 +523,7 @@ Possible constructors:
 #### SzIPRouter.getDefaultGateway(callback)
 Gets the default gateway from main table as string.
 
-*callback* (function) Function executed as callback. Arguments (err, object).
+*callback* (function) Function executed as callback. Arguments (Error, String).
 
 ```javascript
   SzIPRouter.getDefaultGateway((err, gateway) => {
@@ -531,10 +532,52 @@ Gets the default gateway from main table as string.
   })
 ```
 
+#### SzIPRouter.getTables(callback)
+Gets all route tables on iproute2/rt_tables file.
+
+*callback* (function) Function executed as callback. Arguments (Error, Array<Object>).
+
+```javascript
+  SzIPRouter.getTables((err, tables) => {
+    if (err) return console.log(err)
+    return console.log(tables)
+  })
+
+  // normal output
+
+  [ 
+    { 
+      id: '255', 
+      name: 'local', 
+      systemTable: true 
+    },
+    { 
+      id: '254', 
+      name: 'main', 
+      systemTable: true 
+    },
+    { 
+      id: '253', 
+      name: 'default', 
+      systemTable: true 
+    },
+    { 
+      id: '0', 
+      name: 'unspec', 
+      systemTable: true 
+    },
+    { 
+      id: '10', 
+      name: 'custom', 
+      systemTable: false 
+    }
+  ]
+```
+
 #### SzIPRouter.getIpForward(callback)
 Gets current setting whether IPv4 forwarding is enabled.
 
-*callback* (function) Function executed as callback. Arguments (err, boolean).
+*callback* (function) Function executed as callback. Arguments (Error, Boolean).
 
 ```javascript
   SzIPRouter.getIpForward((err, enabled) => {
@@ -548,7 +591,7 @@ Enables or disables IPv4 forwarding on Linux system and return current status af
 
 *enable* Indicates whether routing should be enabled or disabled
 
-*callback* (function) Function executed as callback. Arguments (err, boolean).
+*callback* (function) Function executed as callback. Arguments (Error, Boolean).
 
 ```javascript
   SzIPRouter.setIpForward(true, (err, enabled) => {

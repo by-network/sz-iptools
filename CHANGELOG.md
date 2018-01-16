@@ -1,3 +1,6 @@
+# v1.8.0
+- Added method getTables to *IPRouter*
+- README revised and improved
 # v1.7.0
 - Added method getNetworkManagerProcs to *IFaceConfigurator*
 - Added method killNetworkManagerProcs to *IFaceConfigurator*

@@ -6,4 +6,3 @@ SzIPRouter.getTables((err, data) => {
   if (err) return console.log(err)
   return console.log(data)
 })
-
