@@ -1,8 +1,13 @@
-// const SzIPCalculator = require('./lib/IPCalculator')
+const SzIPCalculator = require('./lib/IPCalculator')
 // const SzIFaceConfig = require('./lib/IFaceConfigurator')
-const SzIPRouter = require('./lib/IPRouter')
+// const SzIpCalculator = require('./lib/IPRouter')
 
-SzIPRouter.addTable(4, 'gsomenzi2222', (err, data) => {
-  if (err) return console.log(err)
-  return console.log(data)
+SzIPCalculator.getNextIp('192.168.2.1/16', (err, nextIp) => {
+  if (err) console.error(err)
+  console.log(nextIp)
+})
+
+SzIPCalculator.getPreviousIp('192.168.2.0/16', (err, previousIp) => {
+  if (err) console.error(err)
+  console.log(previousIp)
 })

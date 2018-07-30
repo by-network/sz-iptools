@@ -149,6 +149,22 @@ describe('IPCalculator', function () {
       })
     })
   })
+  describe('#getNextIp - 192.168.1.253/24', function () {
+    it('Should pass 192.168.1.254 to callback.', function () {
+      SzIpCalculator.getNextIp('192.168.1.253/24', (err, nextIp) => {
+        if (err) return console.error(err)
+        assert.equal(nextIp, "192.168.1.254")
+      })
+    })
+  })
+  describe('#getPreviousIp - 192.168.1.253/24', function () {
+    it('Should pass 192.168.1.252 to callback.', function () {
+      SzIpCalculator.getPreviousIp('192.168.1.253/24', (err, nextIp) => {
+        if (err) return console.error(err)
+        assert.equal(nextIp, "192.168.1.252")
+      })
+    })
+  })
 })
 describe('IFaceConfigurator', function () {
   // all

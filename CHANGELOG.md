@@ -1,3 +1,6 @@
+# v1.9.0
+- Added method getNextIp to *IPCalculator*
+- Added method getPreviousIp to *IPCalculator*
 # v1.8.0
 - Added method getTables to *IPRouter*
 - README revised and improved

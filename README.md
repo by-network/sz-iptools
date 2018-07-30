@@ -192,6 +192,34 @@ SzIpCalculator.convertNetmaskToCidr('255.255.254.0', (err, netmask) => {
 })
 ```
 
+#### SzIPCalculator.getNextIp(ipWithCidr, callback)
+Gets the next IP address of a network.
+
+*ipWithCidr* (string) IP address with CIDR sufix.
+
+*callback* (function) Function executed as callback. Arguments (Error, String).
+
+```javascript
+SzIpCalculator.getNextIp('192.168.1.1/24', (err, nextIp) => {
+  if (err) return console.error(err)
+  return console.log(nextIp) // shoud log 192.168.1.2
+})
+```
+
+#### SzIPCalculator.getPreviousIp(ipWithCidr, callback)
+Gets the previous IP address of a network.
+
+*ipWithCidr* (string) IP address with CIDR sufix.
+
+*callback* (function) Function executed as callback. Arguments (Error, String).
+
+```javascript
+SzIpCalculator.getNextIp('192.168.1.2/24', (err, previousIp) => {
+  if (err) return console.error(err)
+  return console.log(previousIp) // shoud log 192.168.1.1
+})
+```
+
 ### ConnTester
 
 #### SzConnTester.test(host, port, timeout, callback)
